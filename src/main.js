@@ -1,8 +1,3 @@
-// ACTION PLAN
-// 1. Create querySelector for the elements we want to manipulate (elements of the cover)
-// 2. Create an eventListener for those elements to either appear or disappear on page load
-// 3. Create a function to generate a random cover by invoking getRandomIndex()
-// 4. Invoke it three times passing thru the args
 
 // Create variables targetting the relevant DOM elements here 👇
 var coverImg = document.querySelector(".cover-image")
@@ -18,18 +13,20 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
-
+window.addEventListener("load", displayRandomCover)
+randCoverBtn.addEventListener("click", displayRandomCover)
 
 // Create your event handlers and other functions here 👇
-window.addEventListener("load", generateRandomCover)
 
-randCoverBtn.addEventListener("click", function(event) {
-  console.log(event.target)
+function displayRandomCover() {
+  var randomCover = getRandomCover()
+  coverImg.src = randomCover.coverImg;
+  coverTitle.innerHTML = randomCover.title;
+  coverTagline1.innerHTML = randomCover.tagline1;
+  coverTagline2.innerHTML = randomCover.tagline2;
+}
 
-}) 
-
-
-function generateRandomCover() {
+function getRandomCover() {
   var getRandImgIndex = getRandomIndex(covers)
   var getRandTitleIndex = getRandomIndex(titles)
   var getRandTagIndex1 = getRandomIndex(descriptors)
@@ -39,25 +36,9 @@ function generateRandomCover() {
   var randTag1 = descriptors[getRandTagIndex1]
   var randTag2 = descriptors[getRandTagIndex2]
 
-coverImg.src = randImg 
-coverTitle.innerHTML = randTitle
-coverTagline1.innerHTML = randTag1
-coverTagline2.innerHTML = randTag2
-  createCover(imgSrc, title, descriptor1, descriptor2)
+  return createCover(randImg, randTitle, randTag1, randTag2)
 }
 
-// function showRandomCover() {
-
-// }
-
-/*
-make a querySelector for random-cover-button 
-
-
- */
-
-// research method to "splice" the innertext section between <span
-// edge case: descriptor words repeating themselves in the tagline
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
@@ -72,6 +53,6 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
     tagline1: descriptor1,
     tagline2: descriptor2
   }
+  currentCover = cover
   return cover
 }
-// possibly write if statement to not repeat descriptors in the random generation
