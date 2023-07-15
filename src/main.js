@@ -10,6 +10,11 @@ var homeView = document.querySelector(".home-view")
 var hideSavedBtn = document.querySelector(".save-cover-button")
 var homeBtn = document.querySelector(".home-button")
 var viewSavedBtn = document.querySelector(".view-saved-button")
+var uniqueCoverInput = document.querySelector(".user-cover")
+var uniqueTitleInput = document.querySelector(".user-title")
+var uniqueDescInput1 = document.querySelector(".user-desc1")
+var uniqueDescInput2 = document.querySelector(".user-desc2")
+var makeMyBookBtn = document.querySelector(".create-new-book-button")
 
 // We've provided a few variables below
 var savedCovers = [
@@ -23,6 +28,13 @@ randCoverBtn.addEventListener("click", displayRandomCover)
 makeOwnCover.addEventListener("click", showCoverForm)
 viewSavedBtn.addEventListener("click", showSavedCovers)
 homeBtn.addEventListener("click", showHomePage)
+makeMyBookBtn.addEventListener("click", function(event){
+  createCover()
+  updateBookArrays()
+// change hidden class inside of new function navToHome. 
+})
+
+
 
 // Create your event handlers and other functions here 👇
 
@@ -47,6 +59,10 @@ function getRandomCover() {
   return createCover(randImg, randTitle, randTag1, randTag2)
 }
 
+// every button need a direction to go. function that using conditional logic that passes in a string. based on this it will hide elements. if statement with a bunch of else ifs.
+
+
+
 function showCoverForm() {
   homeView.classList.add("hidden")
   formView.classList.remove("hidden")
@@ -65,8 +81,35 @@ function showSavedCovers() {
 
 function showHomePage() {
   homeView.classList.remove("hidden")
-
 }
+
+// Use the values from the inputs to create a new, unique cover object (part of your data model)
+
+function updateBookArrays() {
+  event.preventDefault()
+  var uniqueCover = uniqueCoverInput.value
+  covers.push(uniqueCover)
+
+  // currentCover.coverImg = uniqueCover
+  // var uniqueTitle = uniqueTitleInput.value
+  // currentCover.title = uniqueTitle
+  // var uniqueDesc1 = uniqueDescInput1.value
+  // currentCover.tagline1 = uniqueDesc1
+  // var uniqueDesc2 = uniqueDescInput2.value
+  // currentCover.tagline2 = uniqueDesc2
+
+
+  console.log('cover:', uniqueCover)
+  console.log('title:', uniqueTitle)
+  console.log('description1:', uniqueDesc1)
+  console.log('description2:', uniqueDesc2)
+
+  
+
+  // currentCover.coverImg = input.value
+  displayRandomCover()
+}
+
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
