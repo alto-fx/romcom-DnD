@@ -1,12 +1,11 @@
-//consider toggleButtons for switching pages
-// Create variables targetting the relevant DOM elements here 👇
+ // Create variables targetting the relevant DOM elements here 👇
 var coverImg = document.querySelector(".cover-image")
 var coverTitle = document.querySelector(".cover-title")
 var coverTagline1 = document.querySelector(".tagline-1")
 var coverTagline2 = document.querySelector(".tagline-2")
 var randCoverBtn = document.querySelector(".random-cover-button")
 var makeOwnCover = document.querySelector(".make-new-button")
-var viewForm = document.querySelector(".form-view")
+var formView = document.querySelector(".form-view")
 var homeView = document.querySelector(".home-view")
 var hideSavedBtn = document.querySelector(".save-cover-button")
 var homeBtn = document.querySelector(".home-button")
@@ -49,30 +48,19 @@ function getRandomCover() {
 }
 
 function showCoverForm() {
-// eventlistener clicking on button to make !hidden(class) with a conditional
-// add and remove class - syntax classList.remove("hidden")
-// take the queryselector viewForm
-// use the prop classList, remove the class .hidden
-homeView.classList.add("hidden")
-viewForm.classList.remove("hidden")
-// hide show new random cover button and save cover button
-randCoverBtn.classList.add("hidden")
-hideSavedBtn.classList.add("hidden")
-homeBtn.classList.remove("hidden")
-//show saved covers 
-
+  homeView.classList.add("hidden")
+  formView.classList.remove("hidden")
+  randCoverBtn.classList.add("hidden")
+  hideSavedBtn.classList.add("hidden")
+  homeBtn.classList.remove("hidden")
 }
 
 function showSavedCovers() {
-// array needed to save the covers for parameter 
-homeView.classList.add("hidden")
-console.log("yoyyoyoyoyoyo")
-// hide show new random cover and saved cover buttons
-randCoverBtn.classList.add("hidden")
-hideSavedBtn.classList.add("hidden")
-// make home button visible when in savedcovers
-homeBtn.classList.remove("hidden")
-//
+  homeView.classList.add("hidden")
+  randCoverBtn.classList.add("hidden")
+  hideSavedBtn.classList.add("hidden")
+  homeBtn.classList.remove("hidden")
+  formView.classList.add("hidden")
 }
 
 function showHomePage() {
