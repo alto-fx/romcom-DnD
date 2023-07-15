@@ -29,6 +29,7 @@ makeOwnCover.addEventListener("click", showCoverForm)
 viewSavedBtn.addEventListener("click", showSavedCovers)
 homeBtn.addEventListener("click", showHomePage)
 makeMyBookBtn.addEventListener("click", function(event){
+  event.preventDefault()
   createCover()
   updateBookArrays()
 // change hidden class inside of new function navToHome. 
@@ -85,29 +86,20 @@ function showHomePage() {
 
 // Use the values from the inputs to create a new, unique cover object (part of your data model)
 
-function updateBookArrays() {
-  event.preventDefault()
+function updateBookArrays(event) {
   var uniqueCover = uniqueCoverInput.value
   covers.push(uniqueCover)
-
-  // currentCover.coverImg = uniqueCover
-  // var uniqueTitle = uniqueTitleInput.value
-  // currentCover.title = uniqueTitle
-  // var uniqueDesc1 = uniqueDescInput1.value
-  // currentCover.tagline1 = uniqueDesc1
-  // var uniqueDesc2 = uniqueDescInput2.value
-  // currentCover.tagline2 = uniqueDesc2
-
-
-  console.log('cover:', uniqueCover)
-  console.log('title:', uniqueTitle)
-  console.log('description1:', uniqueDesc1)
-  console.log('description2:', uniqueDesc2)
-
+  var uniqueTitle = uniqueTitleInput.value
+  titles.push(uniqueTitle)
+  var uniqueTagline1 = uniqueDescInput1.value
+  descriptors.push(uniqueTagline1)
+  var uniqueTagline2 = uniqueDescInput2.value
+  descriptors.push(uniqueTagline2)
   
-
-  // currentCover.coverImg = input.value
-  displayRandomCover()
+  coverImg.src = currentCover.coverImg;
+  coverTitle.innerHTML = currentCover.title;
+  coverTagline1.innerHTML = currentCover.tagline1;
+  coverTagline2.innerHTML = currentCover.tagline2;
 }
 
 
