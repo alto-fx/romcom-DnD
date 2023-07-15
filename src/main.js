@@ -28,7 +28,7 @@ randCoverBtn.addEventListener("click", displayRandomCover)
 makeOwnCover.addEventListener("click", showCoverForm)
 viewSavedBtn.addEventListener("click", showSavedCovers)
 homeBtn.addEventListener("click", showHomePage)
-makeMyBookBtn.addEventListener("click", function(){
+makeMyBookBtn.addEventListener("click", function(event){
   createCover()
   updateBookArrays()
 // change hidden class inside of new function navToHome. 
@@ -89,7 +89,6 @@ function updateBookArrays() {
   event.preventDefault()
   var uniqueCover = uniqueCoverInput.value
   covers.push(uniqueCover)
-
 
   // currentCover.coverImg = uniqueCover
   // var uniqueTitle = uniqueTitleInput.value
