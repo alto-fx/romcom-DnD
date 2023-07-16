@@ -8,6 +8,7 @@ var coverTagline2 = document.querySelector(".tagline-2")
 var formView = document.querySelector(".form-view")
 var homeView = document.querySelector(".home-view")
 var savedView = document.querySelector(".saved-view")
+var savedSection = document.querySelector(".saved-covers-section")
 // buttons
 var randCoverBtn = document.querySelector(".random-cover-button")
 var makeOwnCoverBtn = document.querySelector(".make-new-button")
@@ -32,14 +33,19 @@ var currentCover;
 window.addEventListener("load", displayRandomCover)
 randCoverBtn.addEventListener("click", displayRandomCover)
 makeOwnCoverBtn.addEventListener("click", displayCoverForm)
-viewSavedBtn.addEventListener("click", displaySavedCovers)
 homeBtn.addEventListener("click", displayHome)
-makeMyBookBtn.addEventListener("click", function (event) {
+viewSavedBtn.addEventListener("click",function(event) {
   event.preventDefault()
+  displaySavedCovers()
+  displaySavedSection()
+})
+
+makeMyBookBtn.addEventListener("click", function (event) {
+ event.preventDefault()
   createCover()
   updateBookArrays()
 })
-//saveCoverBtn.addEventListener("click", saveCurrentCover)
+saveCoverBtn.addEventListener("click", saveCurrentCover)
 
 // Create your event handlers and other functions here 👇
 
@@ -82,6 +88,7 @@ function displayCoverForm() {
 }
 
 function displaySavedCovers() {
+  showElement(savedView)
   hideElement(homeView)
   hideElement(randCoverBtn)
   hideElement(saveCoverBtn)
@@ -121,33 +128,41 @@ function displayCover() {
 }
 
 //When a user clicks the “Save Cover” button, the current cover will be added to the savedCovers array
- // push the currentCover to the savedCovers array  
- //updating the Data model, updating the DOM
- // if currentCover.id[savedCovers] = false then push, meaning if the the loop evaluates the currentCover or random cover to be in the array, do nothing, if false, then push
- // array.includes
 
-// function saveCurrentCover() {
-//   savedCovers.push(currentCover)
-//   for (var i = 0; i < savedCovers.length; i++){
-//     if (savedCovers[i].id === currentCover.id) { 
-//         !savedCovers.push
-//     } else {
-//         savedCovers.push(currentCover)
-//     }
-//   }
-// }
+function saveCurrentCover() {
+var duplicate = false
+  for (var i = 0; i < savedCovers.length; i++){
+    if (savedCovers[i].id === currentCover.id) { 
+        duplicate = true  
+    }
+  }
+  if (duplicate === false) {
+    savedCovers.push(currentCover)
+  }
 console.log(savedCovers)
-//f a user clicks the “Save Cover” more than once on a single cover, it will still only be saved once (no duplicates)
-// for loop and conditional on the savedCovers array
-// Date.now can be referred and compared to itself
-// if currentCover.id === currentCover.id 
-// {!savedCovers.push
-// } else { 
-//   savedCovers.push(currentCover)
-// }
-// check what is in the savedCovers array bc if it's identical to the new input or randomly generated covers
+}
+
+function displaySavedSection() {
+  savedSection.innerHTML = ""
+for (var i = 0; i < savedCovers.length; i++) {
+  // console.log(savedCovers[i].title)
+  savedSection.innerHTML += 
+  `<section class="mini-cover">
+  <img class="cover-image" id= ${savedCovers[i].id} src="${savedCovers[i].coverImg}">
+  <h2 class="cover-title">${savedCovers[i].title}</h2>
+  <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
+</section>`
+}
+}
 
 //When a user clicks the “View Saved Covers” button, we should see the saved covers section
+// write an anon function in the eventlistener to invoke multiple functions
+// display all objects in the array
+// write js to create html elements to show the objects in the savedCovers array thru the DOM so that the section in the html file after line 26 is populated with html
+
+// use innerhtml to insert html into an html element, creating the saved section: insert empty string in line 27 (add and assign?)
+
+//for the delete in iteration 4 to index of and splice methods to delete index of 1, use splice 
 
 //All the covers in the savedCovers array should be displayed in the saved covers section
 
