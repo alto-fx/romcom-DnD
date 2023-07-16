@@ -1,20 +1,26 @@
- // Create variables targetting the relevant DOM elements here 👇
+// Create variables targeting the relevant DOM elements here 👇
+// cover, title, descriptor
 var coverImg = document.querySelector(".cover-image")
 var coverTitle = document.querySelector(".cover-title")
 var coverTagline1 = document.querySelector(".tagline-1")
 var coverTagline2 = document.querySelector(".tagline-2")
-var randCoverBtn = document.querySelector(".random-cover-button")
-var makeOwnCover = document.querySelector(".make-new-button")
+// views
 var formView = document.querySelector(".form-view")
 var homeView = document.querySelector(".home-view")
-var hideSavedBtn = document.querySelector(".save-cover-button")
+var savedView = document.querySelector(".saved-view")
+// buttons
+var randCoverBtn = document.querySelector(".random-cover-button")
+var makeOwnCoverBtn = document.querySelector(".make-new-button")
+var saveCoverBtn = document.querySelector(".save-cover-button")
 var homeBtn = document.querySelector(".home-button")
 var viewSavedBtn = document.querySelector(".view-saved-button")
-var uniqueCoverInput = document.querySelector(".user-cover")
-var uniqueTitleInput = document.querySelector(".user-title")
-var uniqueDescInput1 = document.querySelector(".user-desc1")
-var uniqueDescInput2 = document.querySelector(".user-desc2")
+// user created
+var userCreatedCover = document.querySelector(".user-cover")
+var userCreatedTitle = document.querySelector(".user-title")
+var userCreatedDescriptor1 = document.querySelector(".user-desc1")
+var userCreatedDescriptor2 = document.querySelector(".user-desc2")
 var makeMyBookBtn = document.querySelector(".create-new-book-button")
+
 
 // We've provided a few variables below
 var savedCovers = [
@@ -25,16 +31,14 @@ var currentCover;
 // Add your event listeners here 👇
 window.addEventListener("load", displayRandomCover)
 randCoverBtn.addEventListener("click", displayRandomCover)
-makeOwnCover.addEventListener("click", showCoverForm)
-viewSavedBtn.addEventListener("click", showSavedCovers)
-homeBtn.addEventListener("click", showHomePage)
-makeMyBookBtn.addEventListener("click", function(event){
+makeOwnCoverBtn.addEventListener("click", displayCoverForm)
+viewSavedBtn.addEventListener("click", displaySavedCovers)
+homeBtn.addEventListener("click", displayHome)
+makeMyBookBtn.addEventListener("click", function (event) {
   event.preventDefault()
   createCover()
   updateBookArrays()
-// change hidden class inside of new function navToHome. 
 })
-
 
 
 // Create your event handlers and other functions here 👇
@@ -60,46 +64,60 @@ function getRandomCover() {
   return createCover(randImg, randTitle, randTag1, randTag2)
 }
 
-// every button need a direction to go. function that using conditional logic that passes in a string. based on this it will hide elements. if statement with a bunch of else ifs.
-
-
-
-function showCoverForm() {
-  homeView.classList.add("hidden")
-  formView.classList.remove("hidden")
-  randCoverBtn.classList.add("hidden")
-  hideSavedBtn.classList.add("hidden")
-  homeBtn.classList.remove("hidden")
+function showElement(elementToDisplay) {
+  elementToDisplay.classList.remove("hidden")
 }
 
-function showSavedCovers() {
-  homeView.classList.add("hidden")
-  randCoverBtn.classList.add("hidden")
-  hideSavedBtn.classList.add("hidden")
-  homeBtn.classList.remove("hidden")
-  formView.classList.add("hidden")
+function hideElement(elementToHide) {
+  elementToHide.classList.add("hidden")
 }
 
-function showHomePage() {
-  homeView.classList.remove("hidden")
+function displayCoverForm() {
+  hideElement(homeView)
+  showElement(formView)
+  hideElement(randCoverBtn)
+  hideElement(saveCoverBtn)
+  showElement(homeBtn)
+  hideElement(savedView)
 }
 
-// Use the values from the inputs to create a new, unique cover object (part of your data model)
+function displaySavedCovers() {
+  hideElement(homeView)
+  hideElement(randCoverBtn)
+  hideElement(saveCoverBtn)
+  hideElement(formView)
+  showElement(homeBtn)
+}
+
+function displayHome() {
+  showElement(homeView)
+  hideElement(formView)
+  showElement(randCoverBtn)
+  showElement(saveCoverBtn)
+  showElement(homeBtn)
+  showElement(makeMyBookBtn)
+}
+
 
 function updateBookArrays(event) {
-  var uniqueCover = uniqueCoverInput.value
-  covers.push(uniqueCover)
-  var uniqueTitle = uniqueTitleInput.value
-  titles.push(uniqueTitle)
-  var uniqueTagline1 = uniqueDescInput1.value
-  descriptors.push(uniqueTagline1)
-  var uniqueTagline2 = uniqueDescInput2.value
-  descriptors.push(uniqueTagline2)
-  
-  coverImg.src = currentCover.coverImg;
-  coverTitle.innerHTML = currentCover.title;
-  coverTagline1.innerHTML = currentCover.tagline1;
-  coverTagline2.innerHTML = currentCover.tagline2;
+  var inputCover = userCreatedCover.value
+  covers.push(inputCover)
+  var inputTitle = userCreatedTitle.value
+  titles.push(inputTitle)
+  var inputDescriptor1 = userCreatedDescriptor1.value
+  var inputDescriptor2 = userCreatedDescriptor2.value
+  descriptors.push(inputDescriptor1, inputDescriptor2)
+
+  createCover(inputCover, inputTitle, inputDescriptor1, inputDescriptor2)
+  displayCover(cover) 
+  displayHome()
+}
+
+function displayCover() {
+  coverImg.src = currentCover.coverImg
+  coverTitle.innerHTML = currentCover.title
+  coverTagline1.innerHTML = currentCover.tagline1
+  coverTagline2.innerHTML = currentCover.tagline2
 }
 
 
