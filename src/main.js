@@ -39,7 +39,7 @@ makeMyBookBtn.addEventListener("click", function (event) {
   createCover()
   updateBookArrays()
 })
-
+//saveCoverBtn.addEventListener("click", saveCurrentCover)
 
 // Create your event handlers and other functions here 👇
 
@@ -119,6 +119,39 @@ function displayCover() {
   coverTagline1.innerHTML = currentCover.tagline1
   coverTagline2.innerHTML = currentCover.tagline2
 }
+
+//When a user clicks the “Save Cover” button, the current cover will be added to the savedCovers array
+ // push the currentCover to the savedCovers array  
+ //updating the Data model, updating the DOM
+ // if currentCover.id[savedCovers] = false then push, meaning if the the loop evaluates the currentCover or random cover to be in the array, do nothing, if false, then push
+ // array.includes
+
+// function saveCurrentCover() {
+//   savedCovers.push(currentCover)
+//   for (var i = 0; i < savedCovers.length; i++){
+//     if (savedCovers[i].id === currentCover.id) { 
+//         !savedCovers.push
+//     } else {
+//         savedCovers.push(currentCover)
+//     }
+//   }
+// }
+console.log(savedCovers)
+//f a user clicks the “Save Cover” more than once on a single cover, it will still only be saved once (no duplicates)
+// for loop and conditional on the savedCovers array
+// Date.now can be referred and compared to itself
+// if currentCover.id === currentCover.id 
+// {!savedCovers.push
+// } else { 
+//   savedCovers.push(currentCover)
+// }
+// check what is in the savedCovers array bc if it's identical to the new input or randomly generated covers
+
+//When a user clicks the “View Saved Covers” button, we should see the saved covers section
+
+//All the covers in the savedCovers array should be displayed in the saved covers section
+
+//Note: None of this needs to persist on page load
 
 
 // We've provided two functions to get you started
