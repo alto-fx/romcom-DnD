@@ -22,7 +22,6 @@ var userCreatedDescriptor1 = document.querySelector(".user-desc1")
 var userCreatedDescriptor2 = document.querySelector(".user-desc2")
 var makeMyBookBtn = document.querySelector(".create-new-book-button")
 
-
 // We've provided a few variables below
 var savedCovers = [
   createCover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows")
@@ -66,7 +65,6 @@ function getRandomCover() {
   var randTitle = titles[getRandTitleIndex]
   var randTag1 = descriptors[getRandTagIndex1]
   var randTag2 = descriptors[getRandTagIndex2]
-
   return createCover(randImg, randTitle, randTag1, randTag2)
 }
 
@@ -105,7 +103,6 @@ function displayHome() {
   showElement(makeMyBookBtn)
 }
 
-
 function updateBookArrays(event) {
   var inputCover = userCreatedCover.value
   covers.push(inputCover)
@@ -139,13 +136,11 @@ var duplicate = false
   if (duplicate === false) {
     savedCovers.push(currentCover)
   }
-console.log(savedCovers)
 }
 
 function displaySavedSection() {
   savedSection.innerHTML = ""
 for (var i = 0; i < savedCovers.length; i++) {
-  // console.log(savedCovers[i].title)
   savedSection.innerHTML += 
   `<section class="mini-cover">
   <img class="cover-image" id= ${savedCovers[i].id} src="${savedCovers[i].coverImg}">
@@ -154,20 +149,6 @@ for (var i = 0; i < savedCovers.length; i++) {
 </section>`
 }
 }
-
-//When a user clicks the “View Saved Covers” button, we should see the saved covers section
-// write an anon function in the eventlistener to invoke multiple functions
-// display all objects in the array
-// write js to create html elements to show the objects in the savedCovers array thru the DOM so that the section in the html file after line 26 is populated with html
-
-// use innerhtml to insert html into an html element, creating the saved section: insert empty string in line 27 (add and assign?)
-
-//for the delete in iteration 4 to index of and splice methods to delete index of 1, use splice 
-
-//All the covers in the savedCovers array should be displayed in the saved covers section
-
-//Note: None of this needs to persist on page load
-
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
